@@ -7,14 +7,15 @@ for i in $WORKDIRS; do
     continue
   fi
 
-  options="--auto-approve --no-color"
-  if [ "$UPDATE_STATE" == "true" ]; then
-    options+=" --refresh-only"
-  fi
+  options="--yes --non-interactive --color=never"
 
   cd $i
   echo Deploying for $i
-  cdktf deploy $options > deploy.out
+  if [ "$UPDATE_STATE" == "true" ]; then
+    echo "Updating state for $i"
+    pulumi refresh --yes --non-interactive --color=never > deploy.out
+  fi
+  pulumi up $options > deploy.out
 
   if [ ! $i == '.' ]; then
     cd ..

@@ -1,5 +1,5 @@
 {
-  "name": "cdktf_cli",
+  "name": "pulumi_cli",
   "image": "mcr.microsoft.com/vscode/devcontainers/python",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
@@ -7,10 +7,7 @@
       "version": "20",
       "nvmVersion": "latest"
     },
-    "ghcr.io/devcontainers/features/terraform:1": {},
     "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
-    "ghcr.io/devcontainers-contrib/features/tfsec:1": {},
-    "ghcr.io/devcontainers-contrib/features/terraform-docs:1": {},
-    "ghcr.io/devcontainers-contrib/features/tfcdk-cli:1": {}
+    "ghcr.io/devcontainers-contrib/features/pulumi-cli:1": {}
   }
 }

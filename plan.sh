@@ -5,11 +5,11 @@ plan() {
   dir=$1
   cd $dir
   echo Running plan for $dir
-  options=" --no-color"
+  options=" --color=never"
   if [ "$DRIFT_CHECK" == "true" ]; then
     options+=" --refresh-only"
 
-    cdktf diff $options > plan.out
+    pulumi preview $options --non-interactive > plan.out
 
     INDEX=$(awk '/Note: Objects have changed/{ print NR; exit }' plan.out)
 
@@ -20,11 +20,11 @@ plan() {
     else
       echo No drift detected!
       echo "IN-SYNC" > drift.out
-      cdktf diff --no-color > plan.out
+      pulumi preview --non-interactive --color=never > plan.out
     fi
   else
-    cdktf diff $options > plan.out
-    INDEX=$(awk '/Terraform used the selected providers/{ print NR; exit }' plan.out)
+    pulumi preview $options --non-interactive > plan.out
+    INDEX=$(awk '/Pulumi used the selected providers/{ print NR; exit }' plan.out)
     sed -i "1,$((INDEX-1)) d" plan.out
     if grep -i 'error\|failed' plan.out; then
       sed -i "1iPlan failed!"

@@ -1,11 +1,11 @@
-name: 'cdktf-cli'
-description: 'Custom action to provide access to CDKTF cli'
+name: 'pulumi-cli'
+description: 'Custom action to provide access to the Pulumi CLI' 
 inputs:
   action:
-    description: 'cdktf action to run'
+    description: 'Pulumi action to run'
     required: true
   workdirs:
-    description: 'workdir path to run cdktf in'
+    description: 'workdir path to run Pulumi in' 
     default: '.'
   drift_check:
     description: 'whether to run drift check or not'

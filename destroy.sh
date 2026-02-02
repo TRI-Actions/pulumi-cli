@@ -9,7 +9,7 @@ for i in $WORKDIRS; do
 
   cd $i
   echo Destroying $i
-  cdktf destroy --auto-approve --no-color > destroy.out
+  pulumi destroy --yes --non-interactive --color=never > destroy.out
 
   if [ ! $i == '.' ]; then
     cd ..
