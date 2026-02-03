@@ -22,15 +22,10 @@ runs:
       shell: bash
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
-
-    - name: List Action Directory
-      run: ls -l "$GITHUB_ACTION_PATH"
-      shell: bash
-
     - name: Run plan
       if: ${{ inputs.action == 'plan' }}
       id: plan
-      run: bash "$GITHUB_ACTION_PATH/plan.sh"
+      run: plan.sh
       shell: bash
       env:
         WORKDIRS: ${{ inputs.workdirs }}
