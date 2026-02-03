@@ -22,6 +22,10 @@ runs:
       shell: bash
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
+
+    - run: ls -l "$GITHUB_ACTION_PATH"
+      shell: bash
+
     - name: Run plan
       if: ${{ inputs.action == 'plan' }}
       id: plan
