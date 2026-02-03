@@ -25,7 +25,7 @@ runs:
     - name: Run plan
       if: ${{ inputs.action == 'plan' }}
       id: plan
-      run: plan.sh
+      run: bash "$GITHUB_ACTION_PATH/plan.sh"
       shell: bash
       env:
         WORKDIRS: ${{ inputs.workdirs }}
