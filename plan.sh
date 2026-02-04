@@ -4,7 +4,7 @@ export CI=1
 plan() {
   dir=$1
   cd $dir
-  pulumi stack init
+  pulumi stack init $dir
   echo Running plan for $dir
   options=" --color=never"
   if [ "$DRIFT_CHECK" == "true" ]; then
