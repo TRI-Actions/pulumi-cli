@@ -3,7 +3,8 @@ export CI=1
 
 plan() {
   dir=$1
-  pulumi stack select main --cwd $dir || pulumi stack init main --cwd $dir
+  cd $dir
+  pulumi stack select main || pulumi stack init main 
 
   echo Running plan for $dir
   options=" --color=never"
@@ -31,6 +32,9 @@ plan() {
       sed -i "1iPlan failed!"
     fi
     echo "IN-SYNC" > drift.out
+  fi
+  if [ ! $i == '.' ]; then
+    cd ..
   fi
 }
 
