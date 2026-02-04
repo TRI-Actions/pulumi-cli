@@ -3,12 +3,8 @@ export CI=1
 
 plan() {
   dir=$1
-  cd $dir
-  pulumi stack select main || pulumi stack init main
-  python3 -m venv .venv
-  source .venv/bin/activate
+  pulumi stack select main --cwd $dir || pulumi stack init main --cwd $dir
 
-  pip install -q -r requirements.txt
   echo Running plan for $dir
   options=" --color=never"
   if [ "$DRIFT_CHECK" == "true" ]; then
@@ -36,10 +32,12 @@ plan() {
     fi
     echo "IN-SYNC" > drift.out
   fi
-  if [ ! $i == '.' ]; then
-    cd ..
-  fi
 }
+
+python3 -m venv /opt/pulumi-venv
+/opt/pulumi-venv/bin/pip install -r requirements.txt
+
+export PULUMI_PYTHON_CMD=/opt/pulumi-venv/bin/python
 
 for i in $WORKDIRS; do
   if [ ! -d $i ]; then
