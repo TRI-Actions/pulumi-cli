@@ -4,7 +4,7 @@ export CI=1
 plan() {
   dir=$1
   cd $dir
-  pulumi stack init main
+  pulumi stack select main || pulumi stack init main
   python3 -m venv .venv
   source .venv/bin/activate
 
