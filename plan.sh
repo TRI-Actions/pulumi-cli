@@ -38,10 +38,8 @@ plan() {
   fi
 }
 
-python3 -m venv /opt/pulumi-venv
-/opt/pulumi-venv/bin/pip install -r requirements.txt
-
-export PULUMI_PYTHON_CMD=/opt/pulumi-venv/bin/python
+pip3 install -r requirements.txt
+export PULUMI_PYTHON_CMD=python3
 
 for i in $WORKDIRS; do
   if [ ! -d $i ]; then
