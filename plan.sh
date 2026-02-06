@@ -9,8 +9,8 @@ plan() {
   echo Running plan for $dir
   options=" --color=never"
   if [ "$DRIFT_CHECK" == "true" ]; then
-    options+=" --refresh"
 
+    pulumi refresh --yes
     pulumi preview $options --non-interactive > plan.out
 
     INDEX=$(awk '/Note: Objects have changed/{ print NR; exit }' plan.out)
