@@ -9,7 +9,7 @@ plan() {
   echo Running plan for $dir
   options=" --color=never"
   if [ "$DRIFT_CHECK" == "true" ]; then
-    options+=" --refresh-only"
+    options+=" --refresh"
 
     pulumi preview $options --non-interactive > plan.out
 
