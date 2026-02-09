@@ -14,7 +14,7 @@ for i in $WORKDIRS; do
   options="--yes --non-interactive --color=never"
 
   cd $i
-  pulumi stack select $i || pulumi stack init $i
+  pulumi stack select main || pulumi stack init main
   echo Deploying for $i
   if [ "$UPDATE_STATE" == "true" ]; then
     echo "Updating state for $i"
