@@ -7,7 +7,7 @@ plan() {
   pulumi stack select $dir || pulumi stack init $dir
 
   echo Running plan for $dir
-  options=" --color=never"
+  options=" --color=never --diff"
   if [ "$DRIFT_CHECK" == "true" ]; then
 
     pulumi refresh --yes
