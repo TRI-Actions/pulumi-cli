@@ -7,11 +7,11 @@ plan() {
   pulumi stack select $dir || pulumi stack init $dir
 
   echo Running plan for $dir
-  options=" --color=never --diff --json"
+  #options=" --color=never --diff"
   if [ "$DRIFT_CHECK" == "true" ]; then
 
-    pulumi refresh --yes --diff --json
-    pulumi preview $options --non-interactive > plan.out
+    pulumi refresh --yes --diff
+    pulumi preview --color=never --diff --non-interactive > plan.out
 
     INDEX=$(awk '/Note: Objects have changed/{ print NR; exit }' plan.out)
 
@@ -25,7 +25,7 @@ plan() {
       pulumi preview --non-interactive --color=never > plan.out
     fi
   else
-    pulumi preview $options --non-interactive > plan.out
+    pulumi preview --color=never --diff --non-interactive > plan.out
     INDEX=$(awk '/Pulumi used the selected providers/{ print NR; exit }' plan.out)
     sed -i "1,$((INDEX-1)) d" plan.out
     if grep -i 'error\|failed' plan.out; then
