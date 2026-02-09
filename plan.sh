@@ -10,7 +10,7 @@ plan() {
   options=" --color=never --diff --json"
   if [ "$DRIFT_CHECK" == "true" ]; then
 
-    pulumi refresh --yes
+    pulumi refresh --yes --diff --json
     pulumi preview $options --non-interactive > plan.out
 
     INDEX=$(awk '/Note: Objects have changed/{ print NR; exit }' plan.out)
