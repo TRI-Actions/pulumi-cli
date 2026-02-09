@@ -38,8 +38,9 @@ plan() {
   fi
 }
 
+pulumi login s3://tri-pulumi-state-us-east-1/$GITHUB_REPOSITORY
+
 for i in $WORKDIRS; do
-  echo "Repo is: $GITHUB_REPOSITORY"
   if [ ! -d $i ]; then
     echo $i is not a directory, skipping..
     continue
