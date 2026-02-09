@@ -7,11 +7,11 @@ plan() {
   pulumi stack select $dir || pulumi stack init $dir
 
   echo Running plan for $dir
-  #options=" --color=never --diff"
+  options=" --color=never --diff"
   if [ "$DRIFT_CHECK" == "true" ]; then
 
-    pulumi refresh --yes --diff
-    pulumi preview --color=never --diff --non-interactive > plan.out
+    pulumi refresh --yes
+    pulumi preview $options --non-interactive > plan.out
 
     INDEX=$(awk '/Note: Objects have changed/{ print NR; exit }' plan.out)
 
@@ -22,10 +22,10 @@ plan() {
     else
       echo No drift detected!
       echo "IN-SYNC" > drift.out
-      pulumi preview --non-interactive --diff --color=never > plan.out
+      pulumi preview $options --non-interactive > plan.out
     fi
   else
-    pulumi preview --color=never --diff --non-interactive > plan.out
+    pulumi preview $options --non-interactive > plan.out
     INDEX=$(awk '/Pulumi used the selected providers/{ print NR; exit }' plan.out)
     sed -i "1,$((INDEX-1)) d" plan.out
     if grep -i 'error\|failed' plan.out; then
