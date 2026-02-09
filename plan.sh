@@ -39,6 +39,7 @@ plan() {
 }
 
 for i in $WORKDIRS; do
+  echo "Repo is: $GITHUB_REPOSITORY"
   if [ ! -d $i ]; then
     echo $i is not a directory, skipping..
     continue
