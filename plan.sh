@@ -22,7 +22,7 @@ plan() {
     else
       echo No drift detected!
       echo "IN-SYNC" > drift.out
-      pulumi preview --non-interactive --color=never > plan.out
+      pulumi preview --non-interactive --diff --color=never > plan.out
     fi
   else
     pulumi preview --color=never --diff --non-interactive > plan.out
