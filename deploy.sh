@@ -3,6 +3,8 @@ export CI=1
 
 REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
 
+echo "Deploying to $REPO_NAME"
+
 pulumi login s3://tri-pulumi-state-us-east-1/$REPO_NAME
 
 for i in $WORKDIRS; do
