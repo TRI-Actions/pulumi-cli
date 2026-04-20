@@ -28,7 +28,7 @@ The output in actions context is `drift-status` and can either `DRIFTED` or `IN-
   id: plan
   uses: TRI-Actions/pulumi-cli@v0.0.1
     with:
-      workdir: ${{ inputs.acccount_id }}
+      workdirs: ${{ inputs.acccount_id }}
       action: plan
 - name: Drift result
   run: echo "${{ steps.plan.outputs.drift-status }}"
