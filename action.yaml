@@ -14,6 +14,11 @@ inputs:
     description: whether we update the state or not
     default: 'false'
 
+outputs:
+  drift-status:
+    description: 'DRIFTED or IN-SYNC'
+    value: ${{ steps.plan.outputs.drift-status }}
+
 runs:
   using: composite
   steps:
