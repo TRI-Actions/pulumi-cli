@@ -16,7 +16,7 @@ for i in $WORKDIRS; do
   options="--yes --non-interactive --color=never"
 
   cd $i
-  pulumi stack select main || pulumi stack init main
+  pulumi stack select main || pulumi stack init main --secrets-provider=awskms://alias/pulumi-stack-key
   echo Deploying for $i
   if [ "$UPDATE_STATE" == "true" ]; then
     echo "Updating state for $i"
